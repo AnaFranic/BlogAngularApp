@@ -1,3 +1,37 @@
 :host {
-  display: block;
+  display: flex;
+  background-color: darkslategray;
+  color: white;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  align-items: center;
+  width: 100%;
+
+  >div {
+    flex: 1 1 0;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.logo-link {
+  text-decoration: none;
+}
+
+.logo {
+  height: 32px;
+  margin-right: 8px;
+  background: white;
+  border-radius: 50%;
+}
+
+.social {
+  a {
+    text-decoration: none;
+    color: inherit;
+
+    &:not(:last-of-type) {
+      margin-right: 8px;
+    }
+  }
 }

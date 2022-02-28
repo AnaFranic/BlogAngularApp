@@ -18,7 +18,7 @@
 }
 
 .header-underlay {
-  background-color: red;
+  background-color: white;
   position: absolute;
   top: 0;
   left: 0;
@@ -45,6 +45,8 @@
 .logo {
   height: 32px;
   margin-right: 8px;
+  background: white;
+  border-radius: 50%;
 }
 
 .title {
