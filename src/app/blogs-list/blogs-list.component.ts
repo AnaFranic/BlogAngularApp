@@ -1,31 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Blog } from './blogs-list.models';
+import { BlogsService } from './blogs.service';
 
 @Component({
   selector: 'app-blogs-list',
   templateUrl: './blogs-list.component.html',
   styleUrls: ['./blogs-list.component.scss']
 })
-export class BlogsListComponent implements OnInit {
+export class BlogsListComponent implements OnInit, OnDestroy {
 
-  blogs: Blog[] = [
-    {
-      title: 'Representation Matters: Inaugural Chubby Diaries Travel Awards',
-      subtitle: 'Representation Matters: Inaugural Chubby Diaries Travel Awards Chubby Diaries is happy to announce that we are presenting the first ever Inaugural Chubby Diaries Travel Awards, the',
-      image: './assets/img/blog-logo.png',
-      date: '1/3/2022'
-    },
-    {
-      title: 'Representation Matters: Inaugural Chubby Diaries Travel Awards',
-      subtitle: 'Representation Matters: Inaugural Chubby Diaries Travel Awards Chubby Diaries is happy to announce that we are presenting the first ever Inaugural Chubby Diaries Travel Awards, the',
-      image: './assets/img/blog-logo.png',
-      date: '2/3/2022'
-    }
-  ];
+  blogs?: Blog[];
 
-  constructor() { }
+  private subscriptions = new Subscription();
+
+  constructor(private blogsService: BlogsService) { }
 
   ngOnInit(): void {
+    this.subscriptions.add(
+      this.blogsService.getBlogs().subscribe((blogs) => {
+        this.blogs = blogs;
+      })
+    );
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
 }
