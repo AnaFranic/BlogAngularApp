@@ -1,3 +1,6 @@
+<button (click)="addNewBlog()">
+  <i class="fa-solid fa-plus"></i>
+</button>
 <ul class="blog-list">
   <li class="blog-item" *ngFor="let blog of blogs">
     <img class="blog-image" [src]="blog.image" alt="blog-image">
