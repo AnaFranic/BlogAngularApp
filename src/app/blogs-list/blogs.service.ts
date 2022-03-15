@@ -24,7 +24,7 @@ export class BlogsService {
   constructor() { }
 
   getBlogs(): Observable<Blog[]> {
-    return of(this.blogs).pipe(delay(500));
+    return of(this.blogs).pipe(delay(200));
   }
 
   addBlog(blog: Blog): Observable<Blog> {
@@ -35,7 +35,11 @@ export class BlogsService {
       id: newId,
     };
     this.blogs = [...this.blogs, blogCopy];
-    return of(blogCopy).pipe(delay(500));
+    return of(blogCopy).pipe(delay(200));
+  }
+
+  removeBlog(blog: Blog): Observable<Blog[]> {
+    this.blogs = this.blogs.filter(b => blog.id !== b.id)
+    return of(this.blogs).pipe(delay(200));
   }
 }
-

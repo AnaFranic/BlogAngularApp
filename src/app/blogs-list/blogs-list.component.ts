@@ -47,4 +47,12 @@ export class BlogsListComponent implements OnInit, OnDestroy {
       })
     );
   }
+
+  removeBlog(blog: Blog) {
+    this.subscriptions.add(
+      this.blogsService.removeBlog(blog).subscribe((blogs) => {
+        this.blogs = blogs;
+      })
+    );
+  }
 }

@@ -1,8 +1,16 @@
-<button (click)="addNewBlog()">
+<button class="add-btn" (click)="addNewBlog()">
   <i class="fa-solid fa-plus"></i>
 </button>
 <ul class="blog-list">
   <li class="blog-item" *ngFor="let blog of blogs">
+    <div class="blog-actions">
+      <button>
+        <i class="fa-solid fa-pen"></i>
+      </button>
+      <button (click)="removeBlog(blog)">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
     <img class="blog-image" [src]="blog.image" alt="blog-image">
     <div class="blog-text-wrapper">
       <h3 class="blog-title">{{ blog.title }}</h3>
