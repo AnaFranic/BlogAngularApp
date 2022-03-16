@@ -9,6 +9,7 @@ import { BlogsListComponent } from './blogs-list/blogs-list.component';
 import { BlogsService } from './blogs-list/blogs.service';
 import { EditBlogComponent } from './edit-blog/edit-blog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatDialogModule,
   ],
   providers: [
     BlogsService,

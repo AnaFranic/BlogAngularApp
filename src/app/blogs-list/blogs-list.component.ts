@@ -1,5 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+import { EditBlogComponent } from '../edit-blog/edit-blog.component';
+import { EditBlogDialogData, EditBlogDialogResult } from '../edit-blog/edit-blog.models';
 import { Blog } from './blogs-list.models';
 import { BlogsService } from './blogs.service';
 
@@ -14,7 +17,7 @@ export class BlogsListComponent implements OnInit, OnDestroy {
 
   private subscriptions = new Subscription();
 
-  constructor(private blogsService: BlogsService) { }
+  constructor(private blogsService: BlogsService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getBlogs();
@@ -49,7 +52,18 @@ export class BlogsListComponent implements OnInit, OnDestroy {
   }
 
   editBlog(blog: Blog): void {
-    // open edit dialog
+    const data: EditBlogDialogData = {
+      blog,
+    };
+    const dialogRef = this.dialog.open(EditBlogComponent, {
+      data,
+    });
+
+    this.subscriptions.add(
+      dialogRef.afterClosed().subscribe((result?: EditBlogDialogResult) => {
+        if (result?.refresh) this.getBlogs();
+      })
+    );
   }
 
   removeBlog(blog: Blog): void {
