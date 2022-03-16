@@ -8,6 +8,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { BlogsListComponent } from './blogs-list/blogs-list.component';
 import { BlogsService } from './blogs-list/blogs.service';
 import { EditBlogComponent } from './edit-blog/edit-blog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { EditBlogComponent } from './edit-blog/edit-blog.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     BlogsService,
