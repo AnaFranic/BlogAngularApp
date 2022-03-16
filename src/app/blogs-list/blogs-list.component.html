@@ -4,7 +4,7 @@
 <ul class="blog-list">
   <li class="blog-item" *ngFor="let blog of blogs">
     <div class="blog-actions">
-      <button>
+      <button (click)="editBlog(blog)">
         <i class="fa-solid fa-pen"></i>
       </button>
       <button (click)="removeBlog(blog)">

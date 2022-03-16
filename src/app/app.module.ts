@@ -7,6 +7,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { BlogsListComponent } from './blogs-list/blogs-list.component';
 import { BlogsService } from './blogs-list/blogs.service';
+import { EditBlogComponent } from './edit-blog/edit-blog.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { BlogsService } from './blogs-list/blogs.service';
     HeaderComponent,
     FooterComponent,
     LandingPageComponent,
-    BlogsListComponent
+    BlogsListComponent,
+    EditBlogComponent
   ],
   imports: [
     BrowserModule,
