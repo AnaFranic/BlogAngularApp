@@ -35,15 +35,22 @@ export class EditBlogComponent implements OnInit {
   save() {
     this.form.disable();
 
+    const placeholderId = -1;
     const blog: Blog = {
-      id: this.data.blog.id,
+      id: this.data.blog?.id ?? placeholderId,
       title: this.form.controls['title'].value,
       subtitle: this.form.controls['subtitle'].value,
       image: this.form.controls['image'].value,
+      content: this.form.controls['content'].value,
       date: new Date().toJSON(),
     };
+
+    const createOrUpdate$ = blog.id === placeholderId
+      ? this.blogsService.createBlog(blog)
+      : this.blogsService.updateBlog(blog);
+
     this.subscriptions.add(
-      this.blogsService.updateBlog(blog).subscribe(() => {
+      createOrUpdate$.subscribe(() => {
         const result: EditBlogDialogResult = {
           refresh: true,
         };
@@ -54,9 +61,10 @@ export class EditBlogComponent implements OnInit {
 
   private buildForm(): FormGroup {
     const form = new FormGroup({
-      title: new FormControl(this.data.blog.title, [Validators.required]),
-      subtitle: new FormControl(this.data.blog.subtitle, [Validators.required]),
-      image: new FormControl(this.data.blog.image, [Validators.required]),
+      title: new FormControl(this.data.blog?.title, [Validators.required]),
+      subtitle: new FormControl(this.data.blog?.subtitle, [Validators.required]),
+      image: new FormControl(this.data.blog?.image, [Validators.required]),
+      content: new FormControl(this.data.blog?.content, [Validators.required]),
     });
     return form;
   }

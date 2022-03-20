@@ -2,15 +2,17 @@
   <li class="blog-item" *ngFor="let blog of blogs">
     <div class="blog-actions">
       <button mat-icon-button class="mat-elevation-z12" (click)="editBlog(blog)">
-        <i class="fa-solid fa-pen"></i>
+        <mat-icon>edit</mat-icon>
       </button>
       <button mat-icon-button class="mat-elevation-z12" (click)="deleteBlog(blog)">
-        <i class="fa-solid fa-xmark"></i>
+        <mat-icon>delete</mat-icon>
       </button>
     </div>
     <img class="blog-image" [src]="blog.image" alt="blog-image">
     <div class="blog-text-wrapper">
-      <h3 class="blog-title">{{ blog.title }}</h3>
+      <h3 class="blog-title">
+        <a routerLink="../blogs/{{ blog.id }}">{{ blog.title }}</a>
+      </h3>
       <p class="blog-subtitle">{{ blog.subtitle }}</p>
     </div>
     <div class="blog-date">
@@ -18,6 +20,6 @@
     </div>
   </li>
 </ul>
-<button mat-fab color="primary" class="add-btn" (click)="createBlog()">
-  <i class="fa-solid fa-plus"></i>
+<button mat-fab color="primary" class="create-blog-btn" (click)="createBlog()">
+  <mat-icon>add</mat-icon>
 </button>
