@@ -1,3 +1,17 @@
 :host {
   display: block;
 }
+
+mat-form-field {
+  display: block;
+  width: 400px;
+}
+
+.mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+
+  button:not(:last-of-type) {
+    margin-right: 4px;
+  }
+}

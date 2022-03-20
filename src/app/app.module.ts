@@ -10,6 +10,10 @@ import { BlogsService } from './blogs-list/blogs.service';
 import { EditBlogComponent } from './edit-blog/edit-blog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -18,13 +22,17 @@ import { MatDialogModule } from '@angular/material/dialog';
     FooterComponent,
     LandingPageComponent,
     BlogsListComponent,
-    EditBlogComponent
+    EditBlogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
   ],
   providers: [
     BlogsService,

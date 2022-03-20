@@ -1,13 +1,10 @@
-<button class="add-btn" (click)="addNewBlog()">
-  <i class="fa-solid fa-plus"></i>
-</button>
 <ul class="blog-list">
   <li class="blog-item" *ngFor="let blog of blogs">
     <div class="blog-actions">
-      <button (click)="editBlog(blog)">
+      <button mat-icon-button class="mat-elevation-z12" (click)="editBlog(blog)">
         <i class="fa-solid fa-pen"></i>
       </button>
-      <button (click)="removeBlog(blog)">
+      <button mat-icon-button class="mat-elevation-z12" (click)="deleteBlog(blog)">
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
@@ -17,7 +14,10 @@
       <p class="blog-subtitle">{{ blog.subtitle }}</p>
     </div>
     <div class="blog-date">
-      <span>{{ blog.date }}</span>
+      <span>{{ blog.date | date }}</span>
     </div>
   </li>
 </ul>
+<button mat-fab color="primary" class="add-btn" (click)="createBlog()">
+  <i class="fa-solid fa-plus"></i>
+</button>

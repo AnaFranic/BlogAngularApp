@@ -27,7 +27,7 @@ export class BlogsService {
     return of(this.blogs).pipe(delay(200));
   }
 
-  addBlog(blog: Blog): Observable<Blog> {
+  createBlog(blog: Blog): Observable<Blog> {
     const maxId = this.blogs.reduce((agg, curr) => agg < curr.id ? curr.id : agg, -1);
     const newId = maxId + 1;
     const blogCopy: Blog = {
@@ -38,7 +38,16 @@ export class BlogsService {
     return of(blogCopy).pipe(delay(200));
   }
 
-  removeBlog(blog: Blog): Observable<Blog[]> {
+  updateBlog(blog: Blog): Observable<Blog> {
+    const index = this.blogs.findIndex(b => b.id === blog.id);
+    if (index === -1) {
+      throw new Error(`Can\'t find blog with id ${blog.id}`);
+    }
+    this.blogs = [...this.blogs.slice(0, index), blog, ...this.blogs.slice(index + 1)];
+    return of(blog).pipe(delay(200));
+  }
+
+  deleteBlog(blog: Blog): Observable<Blog[]> {
     this.blogs = this.blogs.filter(b => blog.id !== b.id)
     return of(this.blogs).pipe(delay(200));
   }

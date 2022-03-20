@@ -1,6 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { EditBlogDialogData } from './edit-blog.models';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
+import { Blog } from '../blogs-list/blogs-list.models';
+import { BlogsService } from '../blogs-list/blogs.service';
+import { EditBlogDialogData, EditBlogDialogResult } from './edit-blog.models';
 
 @Component({
   selector: 'app-edit-blog',
@@ -9,9 +13,51 @@ import { EditBlogDialogData } from './edit-blog.models';
 })
 export class EditBlogComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) private data: EditBlogDialogData) { }
+  form: FormGroup;
+
+  private subscriptions = new Subscription();
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) private data: EditBlogDialogData,
+    private dialogRef: MatDialogRef<EditBlogComponent>,
+    private blogsService: BlogsService,
+  ) {
+    this.form = this.buildForm();
+  }
 
   ngOnInit(): void {
   }
 
+  closeDialog(result?: EditBlogDialogResult) {
+    this.dialogRef.close(result);
+  }
+
+  save() {
+    this.form.disable();
+
+    const blog: Blog = {
+      id: this.data.blog.id,
+      title: this.form.controls['title'].value,
+      subtitle: this.form.controls['subtitle'].value,
+      image: this.form.controls['image'].value,
+      date: new Date().toJSON(),
+    };
+    this.subscriptions.add(
+      this.blogsService.updateBlog(blog).subscribe(() => {
+        const result: EditBlogDialogResult = {
+          refresh: true,
+        };
+        this.closeDialog(result);
+      })
+    );
+  }
+
+  private buildForm(): FormGroup {
+    const form = new FormGroup({
+      title: new FormControl(this.data.blog.title, [Validators.required]),
+      subtitle: new FormControl(this.data.blog.subtitle, [Validators.required]),
+      image: new FormControl(this.data.blog.image, [Validators.required]),
+    });
+    return form;
+  }
 }

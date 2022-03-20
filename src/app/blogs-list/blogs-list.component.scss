@@ -6,10 +6,8 @@
 
 .add-btn {
   position: fixed;
-  bottom: 32px;
+  bottom: 24px;
   right: 32px;
-  width: 40px;
-  height: 40px;
 }
 
 .blog-list {
@@ -36,11 +34,20 @@
   }
 }
 
+.blog-item:hover .blog-actions {
+  display: block;
+}
+
 .blog-actions {
+  display: none;
   position: absolute;
   z-index: 10;
-  top: 8px;
-  right: 8px;
+  top: 4px;
+  right: 4px;
+
+  .mat-icon-button {
+    background: white;
+  }
 
   button:not(:last-of-type) {
     margin-right: 4px;
