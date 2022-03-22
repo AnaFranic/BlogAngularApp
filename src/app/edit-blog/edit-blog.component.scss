@@ -2,7 +2,11 @@
   display: block;
 }
 
-mat-form-field {
+.mat-dialog-content {
+  overflow-x: hidden;
+}
+
+.mat-form-field {
   display: block;
   width: 400px;
 }

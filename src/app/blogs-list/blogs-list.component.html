@@ -8,7 +8,11 @@
         <mat-icon>delete</mat-icon>
       </button>
     </div>
-    <img class="blog-image" [src]="blog.image" alt="blog-image">
+    <div class="blog-image">
+      <a routerLink="../blogs/{{ blog.id }}">
+        <img [src]="blog.image" alt="blog-image">
+      </a>
+    </div>
     <div class="blog-text-wrapper">
       <h3 class="blog-title">
         <a routerLink="../blogs/{{ blog.id }}">{{ blog.title }}</a>
