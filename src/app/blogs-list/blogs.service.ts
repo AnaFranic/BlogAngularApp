@@ -27,11 +27,11 @@ export class BlogsService {
 
   getBlog(id: number): Observable<Blog | undefined> {
     const blog = this.blogs.find(b => b.id === id);
-    return of(blog).pipe(delay(200));
+    return of(blog).pipe(delay(50));
   }
 
   getBlogs(): Observable<Blog[]> {
-    return of(this.blogs).pipe(delay(200));
+    return of(this.blogs).pipe(delay(50));
   }
 
   createBlog(blog: Blog): Observable<Blog> {
@@ -42,7 +42,7 @@ export class BlogsService {
       id: newId,
     };
     this.blogs = [...this.blogs, blogCopy];
-    return of(blogCopy).pipe(delay(200));
+    return of(blogCopy).pipe(delay(50));
   }
 
   updateBlog(blog: Blog): Observable<Blog> {
@@ -51,11 +51,11 @@ export class BlogsService {
       throw new Error(`Can\'t find blog with id ${blog.id}`);
     }
     this.blogs = [...this.blogs.slice(0, index), blog, ...this.blogs.slice(index + 1)];
-    return of(blog).pipe(delay(200));
+    return of(blog).pipe(delay(50));
   }
 
   deleteBlog(blog: Blog): Observable<Blog[]> {
     this.blogs = this.blogs.filter(b => blog.id !== b.id)
-    return of(this.blogs).pipe(delay(200));
+    return of(this.blogs).pipe(delay(50));
   }
 }
