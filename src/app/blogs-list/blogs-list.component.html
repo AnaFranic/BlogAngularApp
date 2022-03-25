@@ -1,5 +1,5 @@
 <ul class="blog-list">
-  <li class="blog-item" *ngFor="let blog of blogs">
+  <li class="blog-item" *ngFor="let blog of blogs$ | async">
     <div class="blog-actions">
       <button mat-icon-button class="mat-elevation-z12" (click)="editBlog(blog)">
         <mat-icon>edit</mat-icon>

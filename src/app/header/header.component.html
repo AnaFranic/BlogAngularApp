@@ -5,7 +5,7 @@
   </a>
 </div>
 <div class="header-underlay" [ngClass]="{
-  'animate': animate,
-  'header-sticky': stickyHeader
+  'animate': shouldAnimate$ | async,
+  'header-sticky': stickyHeader$ | async
 }">
 </div>

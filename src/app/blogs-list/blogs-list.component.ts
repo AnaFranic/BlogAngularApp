@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, share, Subscription, switchMap } from 'rxjs';
 import { EditBlogComponent } from '../edit-blog/edit-blog.component';
 import { EditBlogDialogData, EditBlogDialogResult } from '../edit-blog/edit-blog.models';
 import { Blog } from './blogs-list.models';
@@ -12,9 +12,9 @@ import { BlogsService } from './blogs.service';
   styleUrls: ['./blogs-list.component.scss']
 })
 export class BlogsListComponent implements OnInit, OnDestroy {
+  blogs$: Observable<Blog[] | undefined> | undefined;
 
-  blogs?: Blog[];
-
+  private refresh$ = new BehaviorSubject<void>(undefined);
   private subscriptions = new Subscription();
 
   constructor(
@@ -24,19 +24,15 @@ export class BlogsListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.getBlogs();
+    this.blogs$ = this.refresh$.pipe(
+      switchMap(() => this.blogsService.getBlogs()),
+      share(),
+    );
   }
 
   ngOnDestroy(): void {
+    this.refresh$.complete();
     this.subscriptions.unsubscribe();
-  }
-
-  private getBlogs(): void {
-    this.subscriptions.add(
-      this.blogsService.getBlogs().subscribe((blogs) => {
-        this.blogs = blogs;
-      })
-    );
   }
 
   createBlog(): void {
@@ -55,16 +51,14 @@ export class BlogsListComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(
       dialogRef.afterClosed().subscribe((result?: EditBlogDialogResult) => {
-        if (result?.refresh) this.getBlogs();
-      })
+        if (result?.refresh) this.refresh$.next();
+      }),
     );
   }
 
   deleteBlog(blog: Blog): void {
     this.subscriptions.add(
-      this.blogsService.deleteBlog(blog).subscribe((blogs) => {
-        this.blogs = blogs;
-      })
+      this.blogsService.deleteBlog(blog).subscribe(() => this.refresh$.next()),
     );
   }
 }
