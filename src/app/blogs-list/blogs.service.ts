@@ -1,27 +1,11 @@
 import { Injectable } from '@angular/core';
 import { delay, Observable, of } from 'rxjs';
 import { Blog } from './blogs-list.models';
+import { getInitialBlogs } from './blogs.service.helpers';
 
 @Injectable()
 export class BlogsService {
-  private blogs: Blog[] = [
-    {
-      id: 0,
-      title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse cursus sem eget auctor venenatis. In dictum cursus nibh nec sagittis.',
-      image: './assets/img/blog-logo.png',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas elementum dictum velit, a fringilla felis gravida quis. Sed facilisis commodo lectus, quis pharetra dolor eleifend vel. Curabitur in sem dictum, egestas magna imperdiet, rhoncus sapien. Nam lacinia molestie quam, in feugiat urna mattis et. Nulla eu vestibulum elit, ut vehicula lacus. Aenean risus augue, efficitur id ex sed, sodales mattis eros. Proin congue tristique porttitor. Nulla fringilla dapibus ante, eget tincidunt lacus cursus et. Phasellus ac commodo nunc, id luctus dui. Nulla porta non orci in posuere. Curabitur non quam condimentum, convallis ante et, consequat justo. Sed eget cursus nisl.',
-      date: '1/3/2022',
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse cursus sem eget auctor venenatis. In dictum cursus nibh nec sagittis.',
-      image: './assets/img/blog-logo.png',
-      content: 'Curabitur ex nisl, laoreet vel lacinia non, semper et augue. Suspendisse vel eros quis lectus imperdiet condimentum eu ac turpis. Ut vitae iaculis nisi. Sed vitae eros eget urna suscipit faucibus faucibus vel velit. Sed non dui consequat, commodo ante sed, ornare lectus. Vestibulum volutpat nisl quis suscipit porttitor. Integer et iaculis metus, vel convallis nisi. Phasellus id arcu finibus, auctor nisl tempor, viverra nisl. Integer lobortis sem justo, et laoreet nibh gravida et. Curabitur et arcu nunc.',
-      date: '2/3/2022',
-    }
-  ];
+  private blogs = getInitialBlogs();
 
   constructor() { }
 

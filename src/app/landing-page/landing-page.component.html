@@ -3,15 +3,17 @@
     <img class="banner-image" src="assets/img/korcula.jpg" alt="banner-image">
   </div>
   <div class="banner-title mat-elevation-z24">
-    <div class="text">Adventures</div>
+    <div class="text">Read about adventures</div>
     <div>
       <a mat-raised-button color="primary" routerLink="../blogs">Let's get started!</a>
     </div>
   </div>
 </div>
 
-<h1>Latest blog posts</h1>
-<app-blogs-list [maxItems]="3"></app-blogs-list>
-<div>
-  <a mat-raised-button color="primary" routerLink="../blogs">Read more blogs</a>
+<div class="latest-blogs">
+  <h1 class="title">Latest blog posts</h1>
+  <app-blogs-list [maxItems]="3"></app-blogs-list>
+  <div>
+    <a mat-raised-button class="read-more-btn" color="primary" routerLink="../blogs">Read more blogs</a>
+  </div>
 </div>

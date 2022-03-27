@@ -41,3 +41,22 @@
     line-height: normal;
   }
 }
+
+.latest-blogs {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 48px;
+  padding-bottom: 40px;
+
+  .title {
+    font-size: 32px;
+    line-height: normal;
+    margin-bottom: 32px;
+  }
+
+  .read-more-btn {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}

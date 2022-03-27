@@ -1,7 +1,9 @@
+$blog-item-width: 375px;
+$blog-item-margin: 40px;
+
 :host {
-  display: block;
-  padding-top: 64px;
-  min-height: calc(100vh - 64px - 102px);
+  display: flex;
+  justify-content: center;
 }
 
 .create-blog-btn {
@@ -16,15 +18,15 @@
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  padding: 80px 240px;
+  max-width: calc(3 * ($blog-item-width + $blog-item-margin));
 }
 
 .blog-item {
   position: relative;
-  width: 375px;
+  width: $blog-item-width;
   height: 550px;
-  margin-right: 40px;
-  margin-bottom: 40px;
+  margin-right: $blog-item-margin;
+  margin-bottom: $blog-item-margin;
   box-shadow: 0 0 10px 0 rgb(0 0 0 / 15%);
   display: flex;
   flex-direction: column;

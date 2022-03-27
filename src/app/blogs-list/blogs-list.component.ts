@@ -59,6 +59,7 @@ export class BlogsListComponent implements OnInit, OnDestroy {
       data,
       autoFocus: false,
       viewContainerRef: this.viewContainerRef,
+      width: '600px',
     });
 
     this.subscriptions.add(

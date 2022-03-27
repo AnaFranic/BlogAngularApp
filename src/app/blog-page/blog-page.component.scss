@@ -1,15 +1,18 @@
+@import "../../variables";
+
 :host {
   display: block;
-  padding-top: 64px;
-  min-height: calc(100vh - 64px - 102px);
+  padding-top: $header-height;
+  min-height: $page-min-height;
+  box-sizing: border-box;
 }
 
 .blog {
   width: 600px;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 16px;
-  padding-bottom: 32px;
+  padding-top: 32px;
+  padding-bottom: 48px;
 }
 
 .blog-image {

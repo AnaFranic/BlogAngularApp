@@ -12,13 +12,12 @@ import { EditBlogDialogData, EditBlogDialogResult } from './edit-blog.models';
   styleUrls: ['./edit-blog.component.scss']
 })
 export class EditBlogComponent implements OnInit {
-
   form: FormGroup;
 
   private subscriptions = new Subscription();
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) private data: EditBlogDialogData,
+    @Inject(MAT_DIALOG_DATA) public dialogData: EditBlogDialogData,
     private dialogRef: MatDialogRef<EditBlogComponent>,
     private blogsService: BlogsService,
   ) {
@@ -37,7 +36,7 @@ export class EditBlogComponent implements OnInit {
 
     const placeholderId = -1;
     const blog: Blog = {
-      id: this.data.blog?.id ?? placeholderId,
+      id: this.dialogData.blog?.id ?? placeholderId,
       title: this.form.controls['title'].value,
       subtitle: this.form.controls['subtitle'].value,
       image: this.form.controls['image'].value,
@@ -61,10 +60,10 @@ export class EditBlogComponent implements OnInit {
 
   private buildForm(): FormGroup {
     const form = new FormGroup({
-      title: new FormControl(this.data.blog?.title, [Validators.required]),
-      subtitle: new FormControl(this.data.blog?.subtitle, [Validators.required]),
-      image: new FormControl(this.data.blog?.image, [Validators.required]),
-      content: new FormControl(this.data.blog?.content, [Validators.required]),
+      title: new FormControl(this.dialogData.blog?.title, [Validators.required]),
+      subtitle: new FormControl(this.dialogData.blog?.subtitle, [Validators.required]),
+      image: new FormControl(this.dialogData.blog?.image, [Validators.required]),
+      content: new FormControl(this.dialogData.blog?.content, [Validators.required]),
     });
     return form;
   }
