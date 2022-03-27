@@ -1,6 +1,6 @@
 <ul class="blog-list">
-  <li class="blog-item" *ngFor="let blog of blogs$ | async">
-    <div class="blog-actions">
+  <li class="blog-item" *ngFor="let blog of blogs$ | async | slice:0:maxItems; trackBy: trackBlogs">
+    <div class="blog-actions" *ngIf="allowEdit">
       <button mat-icon-button class="mat-elevation-z12" (click)="editBlog(blog)">
         <mat-icon>edit</mat-icon>
       </button>
@@ -24,6 +24,6 @@
     </div>
   </li>
 </ul>
-<button mat-fab color="primary" class="create-blog-btn" (click)="createBlog()">
+<button mat-fab color="primary" class="create-blog-btn" *ngIf="allowEdit" (click)="createBlog()">
   <mat-icon>add</mat-icon>
 </button>

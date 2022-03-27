@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BlogListPageComponent } from './blog-list-page/blog-list-page.component';
 import { BlogPageComponent } from './blog-page/blog-page.component';
-import { BlogsListComponent } from './blogs-list/blogs-list.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 
 const routes: Routes = [
@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'blogs',
-    component: BlogsListComponent,
+    component: BlogListPageComponent,
   },
   {
     path: 'blogs/:id',

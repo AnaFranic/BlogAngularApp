@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { BlogPageComponent } from './blog-page/blog-page.component';
 import { MatIconModule } from '@angular/material/icon';
+import { BlogListPageComponent } from './blog-list-page/blog-list-page.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MatIconModule } from '@angular/material/icon';
     BlogsListComponent,
     EditBlogComponent,
     BlogPageComponent,
+    BlogListPageComponent,
   ],
   imports: [
     BrowserModule,
