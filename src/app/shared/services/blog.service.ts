@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { delay, Observable, of } from 'rxjs';
-import { Blog } from './blogs-list.models';
-import { getInitialBlogs } from './blogs.service.helpers';
+import { Blog } from '../models/blog.models';
+import { getInitialBlogs } from './blog.service.helpers';
 
 @Injectable()
-export class BlogsService {
+export class BlogService {
   private blogs = getInitialBlogs();
 
   constructor() { }

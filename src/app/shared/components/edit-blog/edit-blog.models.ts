@@ -1,4 +1,4 @@
-import { Blog } from '../blogs-list/blogs-list.models';
+import { Blog } from '../../models/blog.models';
 
 export interface EditBlogDialogData {
   blog?: Blog;

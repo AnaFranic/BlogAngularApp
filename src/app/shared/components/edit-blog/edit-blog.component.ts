@@ -2,8 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { Blog } from '../blogs-list/blogs-list.models';
-import { BlogsService } from '../blogs-list/blogs.service';
+import { Blog } from '../../models/blog.models';
+import { BlogService } from '../../services/blog.service';
 import { EditBlogDialogData, EditBlogDialogResult } from './edit-blog.models';
 
 @Component({
@@ -19,7 +19,7 @@ export class EditBlogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public dialogData: EditBlogDialogData,
     private dialogRef: MatDialogRef<EditBlogComponent>,
-    private blogsService: BlogsService,
+    private blogService: BlogService,
   ) {
     this.form = this.buildForm();
   }
@@ -45,8 +45,8 @@ export class EditBlogComponent implements OnInit {
     };
 
     const createOrUpdate$ = blog.id === placeholderId
-      ? this.blogsService.createBlog(blog)
-      : this.blogsService.updateBlog(blog);
+      ? this.blogService.createBlog(blog)
+      : this.blogService.updateBlog(blog);
 
     this.subscriptions.add(
       createOrUpdate$.subscribe(() => {

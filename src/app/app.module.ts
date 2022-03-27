@@ -5,9 +5,9 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { BlogsListComponent } from './blogs-list/blogs-list.component';
-import { BlogsService } from './blogs-list/blogs.service';
-import { EditBlogComponent } from './edit-blog/edit-blog.component';
+import { BlogListComponent } from './shared/components/blog-list/blog-list.component';
+import { BlogService } from './shared/services/blog.service';
+import { EditBlogComponent } from './shared/components/edit-blog/edit-blog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -24,7 +24,7 @@ import { BlogListPageComponent } from './blog-list-page/blog-list-page.component
     HeaderComponent,
     FooterComponent,
     LandingPageComponent,
-    BlogsListComponent,
+    BlogListComponent,
     EditBlogComponent,
     BlogPageComponent,
     BlogListPageComponent,
@@ -41,7 +41,7 @@ import { BlogListPageComponent } from './blog-list-page/blog-list-page.component
     MatIconModule,
   ],
   providers: [
-    BlogsService,
+    BlogService,
   ],
   bootstrap: [AppComponent]
 })

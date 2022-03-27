@@ -3,15 +3,15 @@ import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, map, Observable, share, Subscription, switchMap } from 'rxjs';
 import { EditBlogComponent } from '../edit-blog/edit-blog.component';
 import { EditBlogDialogData, EditBlogDialogResult } from '../edit-blog/edit-blog.models';
-import { Blog } from './blogs-list.models';
-import { BlogsService } from './blogs.service';
+import { Blog } from '../../models/blog.models';
+import { BlogService } from '../../services/blog.service';
 
 @Component({
-  selector: 'app-blogs-list',
-  templateUrl: './blogs-list.component.html',
-  styleUrls: ['./blogs-list.component.scss']
+  selector: 'app-blog-list',
+  templateUrl: './blog-list.component.html',
+  styleUrls: ['./blog-list.component.scss']
 })
-export class BlogsListComponent implements OnInit, OnDestroy {
+export class BlogListComponent implements OnInit, OnDestroy {
   @Input() allowEdit = false;
   @Input() maxItems = 100;
 
@@ -21,14 +21,14 @@ export class BlogsListComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription();
 
   constructor(
-    private blogsService: BlogsService,
+    private blogService: BlogService,
     private dialog: MatDialog,
     private viewContainerRef: ViewContainerRef,
   ) { }
 
   ngOnInit(): void {
     this.blogs$ = this.refresh$.pipe(
-      switchMap(() => this.blogsService.getBlogs()),
+      switchMap(() => this.blogService.getBlogs()),
       map(blogs => blogs.sort((blog1, blog2) => {
         const date1 = new Date(blog1.date).toISOString();
         const date2 = new Date(blog2.date).toISOString();
@@ -71,7 +71,7 @@ export class BlogsListComponent implements OnInit, OnDestroy {
 
   deleteBlog(blog: Blog): void {
     this.subscriptions.add(
-      this.blogsService.deleteBlog(blog).subscribe(() => this.refresh$.next()),
+      this.blogService.deleteBlog(blog).subscribe(() => this.refresh$.next()),
     );
   }
 }

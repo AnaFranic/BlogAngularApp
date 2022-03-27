@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { distinctUntilChanged, map, Observable, share, switchMap } from 'rxjs';
-import { Blog } from '../blogs-list/blogs-list.models';
-import { BlogsService } from '../blogs-list/blogs.service';
+import { Blog } from '../shared/models/blog.models';
+import { BlogService } from '../shared/services/blog.service';
 
 @Component({
   selector: 'app-blog-page',
@@ -12,13 +12,13 @@ import { BlogsService } from '../blogs-list/blogs.service';
 export class BlogPageComponent implements OnInit {
   blog$: Observable<Blog | undefined> | undefined;
 
-  constructor(private route: ActivatedRoute, private blogsService: BlogsService) { }
+  constructor(private route: ActivatedRoute, private blogService: BlogService) { }
 
   ngOnInit(): void {
     this.blog$ = this.route.paramMap.pipe(
       map(paramMap => Number(paramMap.get('id'))),
       distinctUntilChanged(),
-      switchMap(blogId => this.blogsService.getBlog(blogId)),
+      switchMap(blogId => this.blogService.getBlog(blogId)),
       share(),
     );
   }

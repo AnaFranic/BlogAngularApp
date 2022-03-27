@@ -1,4 +1,4 @@
-import { Blog } from './blogs-list.models';
+import { Blog } from '../models/blog.models';
 
 export function getInitialBlogs(): Blog[] {
   const blogs = loremIpsums.map((text, index) => {
