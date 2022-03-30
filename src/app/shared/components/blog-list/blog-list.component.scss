@@ -19,13 +19,15 @@ $blog-item-margin: 40px;
   display: flex;
   flex-wrap: wrap;
   max-width: calc(3 * ($blog-item-width + $blog-item-margin));
+  justify-content: center;
 }
 
 .blog-item {
   position: relative;
   width: $blog-item-width;
   height: 550px;
-  margin-right: $blog-item-margin;
+  margin-left: calc($blog-item-margin / 2);
+  margin-right: calc($blog-item-margin / 2);
   margin-bottom: $blog-item-margin;
   box-shadow: 0 0 10px 0 rgb(0 0 0 / 15%);
   display: flex;

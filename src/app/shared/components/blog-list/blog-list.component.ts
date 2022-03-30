@@ -32,7 +32,7 @@ export class BlogListComponent implements OnInit, OnDestroy {
       map(blogs => blogs.sort((blog1, blog2) => {
         const date1 = new Date(blog1.date).toISOString();
         const date2 = new Date(blog2.date).toISOString();
-        return date1.localeCompare(date2);
+        return date2.localeCompare(date1);
       })),
       share(),
     );
